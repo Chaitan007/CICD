@@ -1,0 +1,29 @@
+pipeline{
+    agent any
+
+    stages{
+        stage("SonarQube Quality check"){
+            agent {
+                docker{
+                    image "openjdk:11"
+                }
+            }
+            steps{
+                script{
+                    withSonarQubeEnv(credentialsId: 'SonarQube-Pass') {
+                        sh 'chmod +x gradlew'
+                        sh './gradlew sonarqube'
+
+                    }
+                }
+
+            }
+        }
+    }
+    post{
+        always{
+            echo " Build is success"
+
+        }
+    }
+}
