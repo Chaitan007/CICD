@@ -38,8 +38,9 @@ pipeline{
                                 docker login -u admin -p $docker_login_pass 157.245.37.88:8083
                                 docker push 157.245.37.88:8083/springapplication:${VERSION}
                                 docker rmi 157.245.37.88:8083/springapplication:${VERSION}
+                            '''
 
-                    }       '''
+                    }       
                 }
             }
 
